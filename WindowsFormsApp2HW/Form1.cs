@@ -64,7 +64,6 @@ namespace WindowsFormsApp2HW
             {
                 var sql = "SELECT * FROM Customers WHERE Name = @Name";
                 var customer = db.Query<Customer>(sql, new {@Name = tbc.Text});
-                // 2. Передаємо оновлення UI назад у головний потік форми
                 if (fc.IsHandleCreated)
                 {
                     fc.Invoke(new Action(() =>
@@ -82,8 +81,7 @@ namespace WindowsFormsApp2HW
             {
                 var sql = "SELECT * FROM Orders WHERE CustomerId = @CustomerId";
                 var order = db.Query<Order>(sql, new { @CustomerId = tbo.Text });
-                // 2. Передаємо оновлення UI назад у головний потік форми
-                if (fc.IsHandleCreated)
+                if (fo.IsHandleCreated)
                 {
                     fo.Invoke(new Action(() =>
                     {
